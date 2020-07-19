@@ -13,15 +13,15 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @GetMapping("/employees")
+    @GetMapping("/clients")
     @ResponseStatus(HttpStatus.OK)
     public List<Client> findAll(){ return clientService.findAll(); }
 
-    @GetMapping("/employees/{id}")
+    @GetMapping("/clients/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Client findById(@PathVariable Integer id){ return clientService.findById(id); }
 
-    @PostMapping("/employees")
+    @PostMapping("/clients")
     @ResponseStatus(HttpStatus.CREATED)
-    public Client create(@RequestBody Client employee) { return clientService.create(employee); }
+    public Client createClient(@RequestBody Client client) { return clientService.create(client); }
 }

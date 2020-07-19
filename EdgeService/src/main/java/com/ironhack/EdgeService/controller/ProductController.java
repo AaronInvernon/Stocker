@@ -1,8 +1,8 @@
-package com.inronhack.Stock.controller;
+package com.ironhack.EdgeService.controller;
 
-import com.inronhack.Stock.model.Product;
-import com.inronhack.Stock.model.dto.ProductDTO;
-import com.inronhack.Stock.service.ProductService;
+import com.ironhack.EdgeService.model.Product.Product;
+import com.ironhack.EdgeService.model.Product.ProductDTO;
+import com.ironhack.EdgeService.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 public class ProductController {
+
     @Autowired
     private ProductService productService;
 

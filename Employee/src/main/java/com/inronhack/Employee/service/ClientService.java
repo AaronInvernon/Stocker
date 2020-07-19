@@ -19,5 +19,5 @@ public class ClientService {
 
     public List<Client> findAll(){ return clientRepository.findAll(); }
     public Client findById(Integer id) { return clientRepository.findById(id).orElseThrow(()-> new ClientNotFoundException("Client not found")); }
-    public Client create(Client employee) { return clientRepository.save(employee); }
+    public Client create(Client client) { return clientRepository.save(client); }
 }
