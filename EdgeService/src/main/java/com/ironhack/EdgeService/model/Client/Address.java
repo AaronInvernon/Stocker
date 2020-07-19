@@ -1,4 +1,4 @@
-package com.ironhack.EdgeService.model.Employee;
+package com.ironhack.EdgeService.model.Client;
 
 public class Address {
     private Integer id;

@@ -1,23 +1,26 @@
-package com.ironhack.EdgeService.model.Employee;
+package com.ironhack.Client.model;
 
-import com.ironhack.EdgeService.enums.Depart;
-import com.ironhack.EdgeService.model.Client.Address;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class Employee {
+@Entity
+public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Depart department;
     private String phoneNumber;
     private Address address;
 
-    public Employee(String name, Depart department, String phoneNumber, Address address) {
+    public Client(String name, String phoneNumber, Address address) {
         this.name = name;
-        this.department = department;
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
 
-    public Employee() {
+    public Client() {
     }
 
     public Integer getId() {
@@ -36,14 +39,6 @@ public class Employee {
         this.name = name;
     }
 
-    public Depart getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Depart department) {
-        this.department = department;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -60,3 +55,4 @@ public class Employee {
         this.address = address;
     }
 }
+
