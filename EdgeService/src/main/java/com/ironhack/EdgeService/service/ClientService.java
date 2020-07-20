@@ -26,7 +26,7 @@ public class ClientService {
     @HystrixCommand(fallbackMethod = "errorFindClientsById")
     public Client findClientsById(Integer id){ return clientClient.findClientsById(id); }
 
-    public Employee errorFindClientsById(Integer id) {
+    public Client errorFindClientsById(Integer id) {
         throw new EmployeeServiceDownException("Employee Service Down Exception. Method: findById. ");
     }
 

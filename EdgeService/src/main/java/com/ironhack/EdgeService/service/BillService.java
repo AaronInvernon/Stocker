@@ -40,7 +40,7 @@ public class BillService {
     @HystrixCommand(fallbackMethod = "errorFindByClientId")
     public List<Bill> findByClientId(Integer clientId){ return billClient.findByClientId(clientId); }
 
-    public Bill errorFindByClientId(Integer clientId) {
+    public List<Bill> errorFindByClientId(Integer clientId) {
         throw new BillServiceDownException("Bill Service Down Exception. Method: findByClientId. ");
     }
 }

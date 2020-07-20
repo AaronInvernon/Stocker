@@ -2,6 +2,7 @@ package com.inronhack.CreateOrder.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,10 +19,10 @@ public class Order {
     public Order() {
     }
 
-    public Order(Integer employeeId, Integer clientId, List<Integer> products) {
+    public Order(Integer employeeId, Integer clientId) {
         this.employeeId = employeeId;
         this.clientId = clientId;
-        this.products = products;
+        this.products = new ArrayList<>();
         this.createAt = LocalDate.now();
     }
 

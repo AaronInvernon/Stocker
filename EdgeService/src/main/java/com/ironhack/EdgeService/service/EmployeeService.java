@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +36,11 @@ public class EmployeeService implements UserDetailsService {
     }
 
     @HystrixCommand(fallbackMethod = "errorCreate")
-    public Employee create(Employee employee){ return employeeClient.create(employee); }
+    public Employee create(Employee employee){
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+        return employeeClient.create(employee);
+    }
 
     public Employee errorCreate(Employee employee) {
         throw new EmployeeServiceDownException("Employee Service Down Exception. Method: create. ");

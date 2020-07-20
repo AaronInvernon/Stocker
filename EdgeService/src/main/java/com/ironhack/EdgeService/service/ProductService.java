@@ -27,7 +27,7 @@ public class ProductService {
     @HystrixCommand(fallbackMethod = "errorFindById")
     public Product findById(Integer id){ return productClient.findById(id); }
 
-    public Product errorFindById() {
+    public Product errorFindById(Integer id) {
         throw new ProductServiceDownException("Product Service Down Exception. Method: findById. ");
     }
 

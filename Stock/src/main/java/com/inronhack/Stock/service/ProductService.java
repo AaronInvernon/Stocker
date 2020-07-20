@@ -8,6 +8,7 @@ import com.inronhack.Stock.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -16,7 +17,9 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Product create(Product p) { return productRepository.save(p); }
+    public Product create(Product p) {
+        p.setDateAt(LocalDate.now());
+        return productRepository.save(p); }
 
     public Product findById(Integer id) { return productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException("Product Not Found")); }
 

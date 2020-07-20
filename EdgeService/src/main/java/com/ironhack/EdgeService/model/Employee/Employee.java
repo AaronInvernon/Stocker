@@ -18,7 +18,7 @@ public class Employee {
         this.username = username;
         this.department = department;
         this.phoneNumber = phoneNumber;
-        this.password = password;
+        setPassword(password);
         this.role = role;
     }
 

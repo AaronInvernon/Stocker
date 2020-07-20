@@ -19,12 +19,13 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Employee(String name, String username, Depart department, String phoneNumber, String password) {
+    public Employee(String name, String username, Depart department, String phoneNumber, String password, Role role) {
         this.name = name;
         this.username = username;
         setDepartment(department);
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.role = role;
     }
 
     public Employee() {
@@ -59,11 +60,6 @@ public class Employee {
     }
 
     public void setDepartment(Depart department) {
-        if(department == Depart.HHRR){
-            setRole(Role.ROLE_ADMIN);
-        } else {
-            setRole(Role.ROLE_SALES);
-        }
         this.department = department;
     }
 

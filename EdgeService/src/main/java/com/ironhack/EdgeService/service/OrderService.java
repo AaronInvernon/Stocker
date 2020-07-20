@@ -32,7 +32,7 @@ public class OrderService {
     @HystrixCommand(fallbackMethod = "errorCreate")
     public Order create(Order order){ return orderClient.create(order); }
 
-    public Order errorCreate() {
+    public Order errorCreate(Order order) {
         throw new OrderServiceDownException("Order Service Down Exception. Method: create. ");
     }
 
