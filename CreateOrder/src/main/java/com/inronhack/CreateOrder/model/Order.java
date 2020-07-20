@@ -1,9 +1,6 @@
 package com.inronhack.CreateOrder.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,6 +11,7 @@ public class Order {
     private Integer id;
     private Integer employeeId;
     private Integer clientId;
+    @ElementCollection
     private List<Integer> products;
     private LocalDate createAt;
 

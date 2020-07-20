@@ -15,6 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.savedrequest.NullRequestCache;
 
 
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -39,8 +42,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.httpBasic();
         httpSecurity.authorizeRequests()
                 //Employees controller
-                .mvcMatchers(HttpMethod.POST, "/employees").hasAuthority("ROLE_ADMIN")
-                .mvcMatchers(HttpMethod.GET, "/employees").hasAnyAuthority("ROLE_ADMIN", "ROLE_SALES")
                 .mvcMatchers(HttpMethod.GET, "/employees/{id}").hasAnyAuthority("ROLE_ADMIN", "ROLE_SALES")
                 //Bill controller
                 .mvcMatchers(HttpMethod.POST, "/bills").hasAnyAuthority("ROLE_ADMIN", "ROLE_SALES")

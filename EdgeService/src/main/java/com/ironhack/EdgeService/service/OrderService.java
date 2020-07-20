@@ -25,7 +25,7 @@ public class OrderService {
     @HystrixCommand(fallbackMethod = "errorFindById")
     public Order findById(Integer id){ return orderClient.findById(id); }
 
-    public Order errorFindById() {
+    public Order errorFindById(Integer id) {
         throw new OrderServiceDownException("Order Service Down Exception. Method: findById. ");
     }
 
@@ -39,14 +39,14 @@ public class OrderService {
     @HystrixCommand(fallbackMethod = "errorFindByEmployeeId")
     public List<Order> findByEmployeeId(Integer id){ return orderClient.findByEmployeeId(id); }
 
-    public List<Order> errorFindByEmployeeId() {
+    public List<Order> errorFindByEmployeeId(Integer id) {
         throw new OrderServiceDownException("Order Service Down Exception. Method: findByEmployeeId.");
     }
 
     @HystrixCommand(fallbackMethod = "errorFindByClientId")
     public List<Order> findByClientId(Integer id){ return orderClient.findByClientId(id); }
 
-    public List<Order> errorFindByClientId() {
+    public List<Order> errorFindByClientId(Integer id) {
         throw new OrderServiceDownException("Order Service Down Exception. Method: findByClientId.");
     }
 }

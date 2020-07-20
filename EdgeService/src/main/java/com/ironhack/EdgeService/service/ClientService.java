@@ -26,14 +26,14 @@ public class ClientService {
     @HystrixCommand(fallbackMethod = "errorFindClientsById")
     public Client findClientsById(Integer id){ return clientClient.findClientsById(id); }
 
-    public Employee errorFindClientsById() {
+    public Employee errorFindClientsById(Integer id) {
         throw new EmployeeServiceDownException("Employee Service Down Exception. Method: findById. ");
     }
 
     @HystrixCommand(fallbackMethod = "errorCreateClient")
     public Client createClient(Client client){ return clientClient.createClient(client); }
 
-    public Client errorCreateClient() {
+    public Client errorCreateClient(Client client) {
         throw new EmployeeServiceDownException("Employee Service Down Exception. Method: CreateClient. ");
     }
 }

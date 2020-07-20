@@ -26,21 +26,21 @@ public class BillService {
     @HystrixCommand(fallbackMethod = "errorFindById")
     public Bill findById(Integer id){ return billClient.findById(id); }
 
-    public Bill errorFindById() {
+    public Bill errorFindById(Integer id) {
         throw new BillServiceDownException("Bill Service Down Exception. Method: findById. ");
     }
 
     @HystrixCommand(fallbackMethod = "errorCreate")
-    public Bill create(Bill order){ return billClient.create(order); }
+    public Bill create(Bill bill){ return billClient.create(bill); }
 
-    public Bill errorCreate() {
+    public Bill errorCreate(Bill bill) {
         throw new BillServiceDownException("Bill Service Down Exception. Method: create. ");
     }
 
     @HystrixCommand(fallbackMethod = "errorFindByClientId")
     public List<Bill> findByClientId(Integer clientId){ return billClient.findByClientId(clientId); }
 
-    public Bill errorFindByClientId() {
+    public Bill errorFindByClientId(Integer clientId) {
         throw new BillServiceDownException("Bill Service Down Exception. Method: findByClientId. ");
     }
 }

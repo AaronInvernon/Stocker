@@ -2,7 +2,6 @@ package com.ironhack.EdgeService.service;
 
 import com.ironhack.EdgeService.client.EmployeeClient;
 import com.ironhack.EdgeService.exceptions.EmployeeServiceDownException;
-import com.ironhack.EdgeService.model.Client.Client;
 import com.ironhack.EdgeService.model.Employee.Employee;
 import com.ironhack.EdgeService.security.CustomSecurityUser;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -30,14 +29,14 @@ public class EmployeeService implements UserDetailsService {
     @HystrixCommand(fallbackMethod = "errorFindById")
     public Employee findById(Integer id){ return employeeClient.findById(id); }
 
-    public Employee errorFindById() {
+    public Employee errorFindById(Integer id) {
         throw new EmployeeServiceDownException("Employee Service Down Exception. Method: findById. ");
     }
 
     @HystrixCommand(fallbackMethod = "errorCreate")
     public Employee create(Employee employee){ return employeeClient.create(employee); }
 
-    public Employee errorCreate() {
+    public Employee errorCreate(Employee employee) {
         throw new EmployeeServiceDownException("Employee Service Down Exception. Method: create. ");
     }
 

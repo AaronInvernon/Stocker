@@ -34,14 +34,14 @@ public class ProductService {
     @HystrixCommand(fallbackMethod = "errorCreate")
     public Product create(Product product){ return productClient.create(product); }
 
-    public Product errorCreate() {
+    public Product errorCreate(Product product) {
         throw new ProductServiceDownException("Product Service Down Exception. Method: create. ");
     }
 
     @HystrixCommand(fallbackMethod = "errorDelete")
     public void delete(Integer id){ productClient.delete(id); }
 
-    public void errorDelete() {
+    public void errorDelete(Integer id) {
         throw new ProductServiceDownException("Product Service Down Exception. Method: delete. ");
     }
 
@@ -49,7 +49,7 @@ public class ProductService {
     public void decrementQuantity(@PathVariable Integer id, @RequestBody ProductDTO productDTO) {
         productClient.decrementQuantity(id, productDTO);
     }
-    public void errorDecrementQuantity() {
+    public void errorDecrementQuantity(@PathVariable Integer id, @RequestBody ProductDTO productDTO) {
         throw new ProductServiceDownException("Product Service Down Exception. Method: errorDecrementQuantity. ");
     }
 }
