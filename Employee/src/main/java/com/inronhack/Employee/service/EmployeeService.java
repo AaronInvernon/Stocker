@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -16,4 +17,8 @@ public class EmployeeService {
     public List<Employee> findAll(){ return employeeRepository.findAll(); }
     public Employee findById(Integer id) { return employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException("Employee not found")); }
     public Employee create(Employee employee) { return employeeRepository.save(employee); }
+    public Optional<Employee> findByUsername(String username) {
+        Optional<Employee> result = employeeRepository.findByUsername(username);
+        return result;
+    }
 }

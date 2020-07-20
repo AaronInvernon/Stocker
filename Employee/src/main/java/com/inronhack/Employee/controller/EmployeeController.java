@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class EmployeeController {
@@ -25,4 +26,10 @@ public class EmployeeController {
     @PostMapping("/employees")
     @ResponseStatus(HttpStatus.CREATED)
     public Employee create(@RequestBody Employee employee) { return employeeService.create(employee); }
+
+    @GetMapping( "/users/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Employee> findByUsername(@PathVariable(name = "username") String username) {
+        return employeeService.findByUsername(username);
+    }
 }

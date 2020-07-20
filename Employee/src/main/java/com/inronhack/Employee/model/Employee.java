@@ -1,11 +1,9 @@
 package com.inronhack.Employee.model;
 
 import com.inronhack.Employee.enums.Depart;
+import com.inronhack.Employee.enums.Role;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Employee {
@@ -13,15 +11,20 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String username;
+    @Enumerated(EnumType.STRING)
     private Depart department;
     private String phoneNumber;
-    private Address address;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public Employee(String name, Depart department, String phoneNumber, Address address) {
+    public Employee(String name, String username, Depart department, String phoneNumber, String password) {
         this.name = name;
-        this.department = department;
+        this.username = username;
+        setDepartment(department);
         this.phoneNumber = phoneNumber;
-        this.address = address;
+        this.password = password;
     }
 
     public Employee() {
@@ -43,11 +46,24 @@ public class Employee {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public Depart getDepartment() {
         return department;
     }
 
     public void setDepartment(Depart department) {
+        if(department == Depart.HHRR){
+            setRole(Role.ROLE_ADMIN);
+        } else {
+            setRole(Role.ROLE_SALES);
+        }
         this.department = department;
     }
 
@@ -59,11 +75,32 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", department=" + department +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

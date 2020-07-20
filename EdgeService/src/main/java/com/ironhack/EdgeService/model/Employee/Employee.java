@@ -1,20 +1,25 @@
 package com.ironhack.EdgeService.model.Employee;
 
 import com.ironhack.EdgeService.enums.Depart;
+import com.ironhack.EdgeService.enums.Role;
 import com.ironhack.EdgeService.model.Client.Address;
 
 public class Employee {
     private Integer id;
     private String name;
+    private String username;
     private Depart department;
     private String phoneNumber;
-    private Address address;
+    private String password;
+    private Role role;
 
-    public Employee(String name, Depart department, String phoneNumber, Address address) {
+    public Employee(String name, String username, Depart department, String phoneNumber, String password, Role role) {
         this.name = name;
+        this.username = username;
         this.department = department;
         this.phoneNumber = phoneNumber;
-        this.address = address;
+        this.password = password;
+        this.role = role;
     }
 
     public Employee() {
@@ -36,6 +41,14 @@ public class Employee {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public Depart getDepartment() {
         return department;
     }
@@ -52,11 +65,19 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

@@ -1,6 +1,7 @@
 package com.ironhack.EdgeService.security;
 
 import com.ironhack.EdgeService.enums.Role;
+import com.ironhack.EdgeService.model.Employee.Employee;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,14 +11,13 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CustomSecurityUser implements UserDetails, Authentication {
+public class CustomSecurityUser extends Employee implements UserDetails, Authentication {
     private static final long serialVersionUID = -4381938875186527688L;
     private Role role;
 
-    public CustomSecurityUser(SalesRep user) {
+    public CustomSecurityUser(Employee user) {
         this.setId(user.getId());
         this.setName(user.getName());
-        this.setUsername(user.getUsername());
         this.setPassword(user.getPassword());
         this.role = user.getRole();
         System.out.println(this.getId());
@@ -30,6 +30,11 @@ public class CustomSecurityUser implements UserDetails, Authentication {
         System.out.println("Asignando Role");
         System.out.println(this.role.name());
         return Stream.of(new SimpleGrantedAuthority(role.toString())).collect(Collectors.toList());
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
     }
 
     @Override
