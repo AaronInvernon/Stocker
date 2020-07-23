@@ -33,5 +33,11 @@ public class OrderController {
     @ResponseStatus(HttpStatus.OK)
     public List<Order> findByEmployeeId(@PathVariable(name = "id") Integer employeeId){ return orderService.findByEmployeeId(employeeId); }
 
+    @PostMapping("/orders/{orderId}/{productId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Order addProduct(@PathVariable Integer orderId, @PathVariable Integer productId){
+        return orderService.addProduct(orderId,productId);
+    }
+
 
 }

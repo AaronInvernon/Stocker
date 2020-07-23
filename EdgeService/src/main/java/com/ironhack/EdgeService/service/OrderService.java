@@ -49,4 +49,11 @@ public class OrderService {
     public List<Order> errorFindByClientId(Integer id) {
         throw new OrderServiceDownException("Order Service Down Exception. Method: findByClientId.");
     }
+
+    @HystrixCommand(fallbackMethod = "errorAddProduct")
+    public Order addProduct(Integer orderId, Integer productId){ return orderClient.addProduct(orderId, productId); }
+
+    public Order errorAddProduct(Integer orderId, Integer productId) {
+        throw new OrderServiceDownException("Order Service Down Exception. Method: addProduct.");
+    }
 }

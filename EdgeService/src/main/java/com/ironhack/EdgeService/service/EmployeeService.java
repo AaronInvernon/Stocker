@@ -21,12 +21,12 @@ public class EmployeeService implements UserDetailsService {
     @Autowired
     private EmployeeClient employeeClient;
 
-    @HystrixCommand(fallbackMethod = "errorFindAll")
+    /*@HystrixCommand(fallbackMethod = "errorFindAll")*/
     public List<Employee> findAll(){ return employeeClient.findAll(); }
 
-    public List<Employee> errorFindAll() {
+  /*  public List<Employee> errorFindAll() {
         throw new EmployeeServiceDownException("Employee Service Down Exception. Method: findAll. ");
-    }
+    }*/
 
     @HystrixCommand(fallbackMethod = "errorFindById")
     public Employee findById(Integer id){ return employeeClient.findById(id); }

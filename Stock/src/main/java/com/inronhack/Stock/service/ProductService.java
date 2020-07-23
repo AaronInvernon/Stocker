@@ -31,5 +31,6 @@ public class ProductService {
         Product product = findById(id);
         if(product.getQuantity() < productDTO.getQuantity()) throw new ProductStockException("There are " + product.getQuantity() + "in stock");
         product.setQuantity(product.getQuantity() - productDTO.getQuantity());
+        productRepository.save(product);
     }
 }

@@ -25,4 +25,7 @@ public interface OrderClient {
 
     @GetMapping("/orders/employee/{id}")
     public List<Order> findByEmployeeId(@PathVariable(name = "id") Integer employeeId);
+
+    @PostMapping("/orders/{orderId}/{productId}")
+    public Order addProduct(@PathVariable Integer orderId, @PathVariable Integer productId);
 }

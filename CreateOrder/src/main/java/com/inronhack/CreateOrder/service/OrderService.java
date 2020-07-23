@@ -23,4 +23,13 @@ public class OrderService {
     }
     public List<Order> findByClientId(Integer clientId) { return orderRepository.findByClientId(clientId); }
     public List<Order> findByEmployeeId(Integer employeeId) { return orderRepository.findByEmployeeId(employeeId); }
+
+    public Order addProduct(Integer orderId, Integer productId) {
+        Order order = findById(orderId);
+        List<Integer> products = order.getProducts();
+        products.add(productId);
+        order.setProducts(products);
+        orderRepository.save(order);
+        return order;
+    }
 }
