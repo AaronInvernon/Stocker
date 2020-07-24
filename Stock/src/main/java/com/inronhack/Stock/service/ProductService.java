@@ -21,13 +21,13 @@ public class ProductService {
         p.setDateAt(LocalDate.now());
         return productRepository.save(p); }
 
-    public Product findById(Integer id) { return productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException("Product Not Found")); }
+    public Product findById(String id) { return productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException("Product Not Found")); }
 
     public List<Product> findAll() { return productRepository.findAll(); }
 
-    public void delete(Integer id) { productRepository.delete(findById(id)); }
+    public void delete(String id) { productRepository.delete(findById(id)); }
 
-    public void decrementQuantity(Integer id, ProductDTO productDTO) {
+    public void decrementQuantity(String id, ProductDTO productDTO) {
         Product product = findById(id);
         if(product.getQuantity() < productDTO.getQuantity()) throw new ProductStockException("There are " + product.getQuantity() + "in stock");
         product.setQuantity(product.getQuantity() - productDTO.getQuantity());

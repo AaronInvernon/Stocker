@@ -20,7 +20,7 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Product findById(@PathVariable Integer id){ return productService.findById(id); }
+    public Product findById(@PathVariable String id){ return productService.findById(id); }
 
     @PostMapping("/products")
     @ResponseStatus(HttpStatus.CREATED)
@@ -28,11 +28,11 @@ public class ProductController {
 
     @DeleteMapping("/products/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer id) { productService.delete(id); }
+    public void delete(@PathVariable String id) { productService.delete(id); }
 
     @PatchMapping("/products/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void decrementQuantity(@PathVariable Integer id, @RequestBody ProductDTO productDTO) {
+    public void decrementQuantity(@PathVariable String id, @RequestBody ProductDTO productDTO) {
         productService.decrementQuantity(id, productDTO);
     }
 }

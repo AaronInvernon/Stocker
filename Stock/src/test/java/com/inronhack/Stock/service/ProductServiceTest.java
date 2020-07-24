@@ -22,7 +22,7 @@ class ProductServiceTest {
     @BeforeEach
     void setUp() {
         product1 = new Product( "Chair", 150,"LERU", "A simple chair", new BigDecimal("10"));
-        product1.setId(10);
+        product1.setId("10");
         productService.create(product1);
     }
 
@@ -40,6 +40,6 @@ class ProductServiceTest {
         productService.create(product2);
         ProductDTO productDTO = new ProductDTO(10);
         productService.decrementQuantity(product2.getId(), productDTO);
-        assertEquals(140, productService.findById(10).getQuantity());
+        assertEquals(140, productService.findById("10").getQuantity());
     }
 }
