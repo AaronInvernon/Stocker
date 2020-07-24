@@ -19,6 +19,7 @@ public class CustomSecurityUser extends Employee implements UserDetails, Authent
         this.setId(user.getId());
         this.setName(user.getName());
         this.setPassword(user.getPassword());
+        this.setUsername(user.getUsername());
         this.role = user.getRole();
         System.out.println(this.getId());
         System.out.println("Creando Usuario");
@@ -34,7 +35,7 @@ public class CustomSecurityUser extends Employee implements UserDetails, Authent
 
     @Override
     public String getUsername() {
-        return null;
+        return super.getUsername();
     }
 
     @Override

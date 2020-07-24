@@ -3,6 +3,7 @@ package com.ironhack.EdgeService.service;
 import com.ironhack.EdgeService.client.EmployeeClient;
 import com.ironhack.EdgeService.exceptions.EmployeeServiceDownException;
 import com.ironhack.EdgeService.model.Employee.Employee;
+import com.ironhack.EdgeService.model.Employee.LoginDTO;
 import com.ironhack.EdgeService.security.CustomSecurityUser;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,16 @@ public class EmployeeService implements UserDetailsService {
         System.out.println("Usuario buscado");
         return new CustomSecurityUser(user.orElseThrow(() ->
                 new UsernameNotFoundException("Invalid username/password combination.")));
+    }
+
+    public Employee login(Employee loginDTO) {
+        Employee user = employeeClient.findByUsername(loginDTO.getUsername()).orElse(null);
+        if(user != null && user.getPassword().equals(loginDTO.getPassword())){
+            System.out.println("USERNAME=>"+loginDTO.getUsername());
+            System.out.println("NAMEEEEEEEEE=>"+user.getName());
+            return user;
+        }
+        return null;
     }
 
     public UserDetails errorLoadUserByUsername(String username){

@@ -18,6 +18,12 @@ public class Bill {
     public Bill() {
     }
 
+    public Bill(Integer clientId, Integer orderId, BigDecimal price) {
+        setClientId(clientId);
+        setOrderId(orderId);
+        setPrice(price);
+    }
+
     public Integer getId() {
         return id;
     }

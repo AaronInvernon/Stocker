@@ -6,6 +6,10 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
+    public ProductDTO(Integer quantity) {
+        setQuantity(quantity);
+    }
+
     public Integer getQuantity() {
         return quantity;
     }

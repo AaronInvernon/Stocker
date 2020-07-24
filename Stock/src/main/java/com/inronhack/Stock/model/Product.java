@@ -20,11 +20,11 @@ public class Product {
     private LocalDate dateAt;
 
     public Product(String name, Integer quantity, String maker, String description, BigDecimal price) {
-        this.name = name;
-        this.quantity = quantity;
-        this.maker = maker;
-        this.description = description;
-        this.price = price;
+        setName(name);
+        setQuantity(quantity);
+        setMaker(maker);
+        setDescription(description);
+        setPrice(price);
         this.dateAt = LocalDate.now();
     }
 
