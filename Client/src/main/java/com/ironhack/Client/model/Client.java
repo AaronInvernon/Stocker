@@ -13,9 +13,9 @@ public class Client {
     private Address address;
 
     public Client(String name, String phoneNumber, Address address) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
+        setName(name);
+        setPhoneNumber(phoneNumber);
+        setAddress(address);
     }
 
     public Client() {

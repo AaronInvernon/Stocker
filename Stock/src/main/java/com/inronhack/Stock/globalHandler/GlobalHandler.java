@@ -2,11 +2,13 @@ package com.inronhack.Stock.globalHandler;
 
 import com.inronhack.Stock.exception.ProductNotFoundException;
 import com.inronhack.Stock.exception.ProductStockException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@ControllerAdvice
 public class GlobalHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)

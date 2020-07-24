@@ -1,5 +1,8 @@
 package com.inronhack.Stock.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +20,7 @@ public class Product {
     private String maker;
     private String description;
     private BigDecimal price;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateAt;
 
     public Product(String name, Integer quantity, String maker, String description, BigDecimal price) {

@@ -21,8 +21,8 @@ public class Order {
     }
 
     public Order(Integer employeeId, Integer clientId) {
-        this.employeeId = employeeId;
-        this.clientId = clientId;
+        setEmployeeId(employeeId);
+        setClientId(clientId);
         this.products = new ArrayList<>();
         this.createAt = LocalDate.now();
     }
@@ -31,9 +31,6 @@ public class Order {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -63,7 +60,7 @@ public class Order {
         return createAt;
     }
 
-    public void setCreateAt(LocalDate createAt) {
-        this.createAt = createAt;
+    public void setCreateAt(LocalDate ld) {
+        this.createAt = ld;
     }
 }

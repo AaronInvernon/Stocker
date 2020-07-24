@@ -20,12 +20,12 @@ public class Employee {
     private Role role;
 
     public Employee(String name, String username, Depart department, String phoneNumber, String password, Role role) {
-        this.name = name;
-        this.username = username;
+        setName(name);
+        setUsername(username);
         setDepartment(department);
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.role = role;
+        setPhoneNumber(phoneNumber);
+        setPassword(password);
+        setRole(role);
     }
 
     public Employee() {
