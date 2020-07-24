@@ -3,7 +3,6 @@ package com.ironhack.EdgeService.service;
 import com.ironhack.EdgeService.client.EmployeeClient;
 import com.ironhack.EdgeService.exceptions.EmployeeServiceDownException;
 import com.ironhack.EdgeService.model.Employee.Employee;
-import com.ironhack.EdgeService.model.Employee.LoginDTO;
 import com.ironhack.EdgeService.security.CustomSecurityUser;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +21,12 @@ public class EmployeeService implements UserDetailsService {
     @Autowired
     private EmployeeClient employeeClient;
 
-    /*@HystrixCommand(fallbackMethod = "errorFindAll")*/
+    @HystrixCommand(fallbackMethod = "errorFindAll")
     public List<Employee> findAll(){ return employeeClient.findAll(); }
 
-  /*  public List<Employee> errorFindAll() {
+   public List<Employee> errorFindAll() {
         throw new EmployeeServiceDownException("Employee Service Down Exception. Method: findAll. ");
-    }*/
+    }
 
     @HystrixCommand(fallbackMethod = "errorFindById")
     public Employee findById(Integer id){ return employeeClient.findById(id); }
@@ -59,8 +58,6 @@ public class EmployeeService implements UserDetailsService {
     public Employee login(Employee loginDTO) {
         Employee user = employeeClient.findByUsername(loginDTO.getUsername()).orElse(null);
         if(user != null && user.getPassword().equals(loginDTO.getPassword())){
-            System.out.println("USERNAME=>"+loginDTO.getUsername());
-            System.out.println("NAMEEEEEEEEE=>"+user.getName());
             return user;
         }
         return null;
